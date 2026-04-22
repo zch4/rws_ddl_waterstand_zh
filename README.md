@@ -17,7 +17,7 @@ In dit repo wordt inzicht gegeven in:
 - Ruimtelijke ligging van de geselecteerde meetstations
 
 Notebook:
-- `waterstand_zh_pipeline.ipynb`
+- [waterstand_zh_pipeline.ipynb](notebooks/waterstand_zh_pipeline.ipynb)
 
 Daarnaast bevat dit repo een eenvoudige Django-app om dezelfde visualisaties
 interactief te bekijken.
