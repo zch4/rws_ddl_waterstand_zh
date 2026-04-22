@@ -5,15 +5,30 @@
 
 {% block content %}
 <section class="intro">
-  <p class="label">RWS DDL-data · {{ stats.periode_start }}-{{ stats.periode_eind }}</p>
+  {% if data_beschikbaar %}
+  <p class="label">RWS DDL-data - {{ stats.periode_start }}-{{ stats.periode_eind }}</p>
+  {% else %}
+  <p class="label">RWS DDL-data</p>
+  {% endif %}
   <h1>Waterstanden Zuid-Holland</h1>
   <p>
     Deze Django-app toont dezelfde vijf visualisaties als het
-    waterstand-notebook. De app is bedoeld als interactieve
-    presentatie van een verkennende analyse over de waterstanden in Zuid-Holland.
+    waterstand-notebook. De app is bedoeld als interactieve presentatie van een
+    verkennende analyse over de waterstanden in Zuid-Holland.
   </p>
 </section>
 
+{% if not data_beschikbaar %}
+<section class="kaart">
+  <h2>Data nog niet gevonden</h2>
+  <p>
+    De Parquet-bestanden staan niet in deze GitHub-repository. Draai eerst het
+    notebook in de repo-root om de data lokaal op te halen en te verwerken.
+  </p>
+  <pre><code>jupyter notebook waterstand_zh_pipeline.ipynb</code></pre>
+  <p class="klein">{{ foutmelding }}</p>
+</section>
+{% else %}
 <section class="kpis">
   <article>
     <span>Meetrecords</span>
@@ -61,14 +76,14 @@
 
 <section class="kaart">
   <h2>1a. Gemeten waterstand</h2>
-  <p>Weekgemiddelden per meetstation voor een snellere dashboard. In de notebook staan de daggemiddelden met meer detail.</p>
+  <p>Weekgemiddelden per meetstation voor een sneller dashboard. In de notebook staan de daggemiddelden met meer detail.</p>
   <div class="grafiek grafiek-groot"><canvas id="grafiek-daggemiddelden"></canvas></div>
   <div class="legenda" id="daggemiddelden-legenda"></div>
 </section>
 
 <section class="kaart">
   <h2>1b. Astronomische waterhoogte</h2>
-  <p>Berekende getijreeks zonder invloed van wind, neerslag of rivierafvoer. Data zijn weergegeven als weekgemiddelden, met in de notebook de daggemiddelden. </p>
+  <p>Berekende getijreeks zonder invloed van wind, neerslag of rivierafvoer. Data zijn weergegeven als weekgemiddelden; in de notebook staan de daggemiddelden.</p>
   <div class="grafiek grafiek-groot"><canvas id="grafiek-astronomisch"></canvas></div>
   <div class="legenda" id="astronomisch-legenda"></div>
 </section>
@@ -98,8 +113,11 @@
   <p>Vereenvoudigde kaart om de ligging van kust naar binnenland te tonen.</p>
   <div id="stationkaart" class="stationkaart"></div>
 </section>
+{% endif %}
 {% endblock %}
 
 {% block extra_scripts %}
+{% if data_beschikbaar %}
 <script src="{% static 'waterstand/js/dashboard.js' %}"></script>
+{% endif %}
 {% endblock %}

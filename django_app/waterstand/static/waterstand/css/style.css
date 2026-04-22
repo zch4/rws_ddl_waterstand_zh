@@ -93,6 +93,18 @@ p {
   line-height: 1.55;
 }
 
+pre {
+  overflow-x: auto;
+  padding: 12px;
+  border: 1px solid var(--rand);
+  border-radius: 6px;
+  background: var(--kaart-2);
+}
+
+.klein {
+  font-size: 13px;
+}
+
 .kpis {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

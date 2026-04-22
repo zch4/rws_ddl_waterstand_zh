@@ -20,10 +20,19 @@ class DashboardView(View):
     """Een pagina met de vijf visualisaties uit het notebook."""
 
     def get(self, request):
-        context = {
-            "stats": get_overzicht_stats(),
-            "stations": get_stations(),
-        }
+        try:
+            context = {
+                "data_beschikbaar": True,
+                "stats": get_overzicht_stats(),
+                "stations": get_stations(),
+            }
+        except FileNotFoundError as exc:
+            context = {
+                "data_beschikbaar": False,
+                "foutmelding": str(exc),
+                "stats": None,
+                "stations": [],
+            }
         return render(request, "waterstand/dashboard.html", context)
 
 
