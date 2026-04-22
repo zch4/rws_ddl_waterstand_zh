@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Waterstanden Zuid-Holland{% endblock %}</title>
+  <meta name="description" content="Eenvoudig waterstanddashboard op basis van RWS DDL-data." />
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'waterstand/css/style.css' %}" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{% url 'waterstand:dashboard' %}">Waterstanden ZH</a>
+    <button class="theme-toggle" data-theme-toggle type="button">Light/dark</button>
+  </header>
+
+  <main class="pagina">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="{% static 'waterstand/js/theme.js' %}?v=2"></script>
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

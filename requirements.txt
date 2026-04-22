@@ -1,0 +1,8 @@
+pandas
+pyarrow
+matplotlib
+ddlpy
+requests
+django
+prefect
+jupyter

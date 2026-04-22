@@ -1,0 +1,105 @@
+{% extends "waterstand/base.html" %}
+{% load static %}
+
+{% block title %}Waterstanden Zuid-Holland{% endblock %}
+
+{% block content %}
+<section class="intro">
+  <p class="label">RWS DDL-data · {{ stats.periode_start }}-{{ stats.periode_eind }}</p>
+  <h1>Waterstanden Zuid-Holland</h1>
+  <p>
+    Deze Django-app toont dezelfde vijf visualisaties als het
+    waterstand-notebook. De app is bedoeld als interactieve
+    presentatie van een verkennende analyse over de waterstanden in Zuid-Holland.
+  </p>
+</section>
+
+<section class="kpis">
+  <article>
+    <span>Meetrecords</span>
+    <strong>{{ stats.totaal_metingen|floatformat:"0" }}</strong>
+  </article>
+  <article>
+    <span>Meetstations</span>
+    <strong>{{ stats.aantal_stations }}</strong>
+  </article>
+  <article>
+    <span>Periode</span>
+    <strong>{{ stats.periode_start }}-{{ stats.periode_eind }}</strong>
+  </article>
+  <article>
+    <span>Gemiddelde</span>
+    <strong>{{ stats.gemiddelde_cm }} cm</strong>
+  </article>
+</section>
+
+<section class="kaart">
+  <h2>Meetstations</h2>
+  <div class="tabel-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Meetstation</th>
+          <th>Metingen</th>
+          <th>Gemiddelde</th>
+          <th>P95-drempel</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for station in stations %}
+        <tr>
+          <td><span class="dot" style="background:{{ station.kleur }}"></span>{{ station.naam }}</td>
+          <td>{{ station.n_metingen|floatformat:"0" }}</td>
+          <td>{{ station.gemiddelde_cm }} cm</td>
+          <td>{{ station.p95_cm }} cm</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="kaart">
+  <h2>1a. Gemeten waterstand</h2>
+  <p>Weekgemiddelden per meetstation voor een snellere dashboard. In de notebook staan de daggemiddelden met meer detail.</p>
+  <div class="grafiek grafiek-groot"><canvas id="grafiek-daggemiddelden"></canvas></div>
+  <div class="legenda" id="daggemiddelden-legenda"></div>
+</section>
+
+<section class="kaart">
+  <h2>1b. Astronomische waterhoogte</h2>
+  <p>Berekende getijreeks zonder invloed van wind, neerslag of rivierafvoer. Data zijn weergegeven als weekgemiddelden, met in de notebook de daggemiddelden. </p>
+  <div class="grafiek grafiek-groot"><canvas id="grafiek-astronomisch"></canvas></div>
+  <div class="legenda" id="astronomisch-legenda"></div>
+</section>
+
+<section class="kaart">
+  <h2>2. Seizoenspatroon</h2>
+  <p>Gemiddelde gemeten waterstand per maand, over alle jaren samen.</p>
+  <div class="grafiek"><canvas id="grafiek-seizoen"></canvas></div>
+  <div class="legenda" id="seizoen-legenda"></div>
+</section>
+
+<section class="kaart">
+  <h2>3. Hoge-watermomenten</h2>
+  <p>Aantal metingen boven de eigen P95-drempel per meetstation.</p>
+  <div class="grafiek"><canvas id="grafiek-extremen"></canvas></div>
+  <div class="legenda" id="extremen-legenda"></div>
+</section>
+
+<section class="kaart">
+  <h2>4. Gemiddeld uurprofiel Hoek van Holland</h2>
+  <p>Gemiddelde waterstand per uur van de dag voor het kuststation Hoek van Holland.</p>
+  <div class="grafiek"><canvas id="grafiek-uurprofiel"></canvas></div>
+</section>
+
+<section class="kaart">
+  <h2>5. Meetstations op kaart</h2>
+  <p>Vereenvoudigde kaart om de ligging van kust naar binnenland te tonen.</p>
+  <div id="stationkaart" class="stationkaart"></div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static 'waterstand/js/dashboard.js' %}"></script>
+{% endblock %}

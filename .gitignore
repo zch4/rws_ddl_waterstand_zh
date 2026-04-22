@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Prefect local state
+.prefect/
+
+# Local data output
+data/**/*.parquet
+data/**/*.csv
+data/**/*.json
+data/**/*.geojson
+
+# Django local files
+django_app/db.sqlite3
+django_app/*.sqlite3
+django_app/staticfiles/
+django_app/media/
+django_app/.env
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

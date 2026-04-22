@@ -1,0 +1,238 @@
+:root,
+[data-theme="light"] {
+  --achtergrond: #f7f6f2;
+  --kaart: #ffffff;
+  --kaart-2: #f9f8f5;
+  --tekst: #28251d;
+  --tekst-zacht: #6f6d67;
+  --rand: #d9d6cf;
+  --accent: #01696f;
+}
+
+[data-theme="dark"] {
+  --achtergrond: #171614;
+  --kaart: #1f1e1b;
+  --kaart-2: #26241f;
+  --tekst: #f2f0ea;
+  --tekst-zacht: #b8b3a9;
+  --rand: #3b3933;
+  --accent: #5bb4bd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--tekst);
+  background: var(--achtergrond);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 28px;
+  background: var(--kaart);
+  border-bottom: 1px solid var(--rand);
+}
+
+.brand {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.theme-toggle {
+  padding: 8px 12px;
+  border: 1px solid var(--rand);
+  border-radius: 6px;
+  color: var(--tekst);
+  background: var(--kaart-2);
+  cursor: pointer;
+}
+
+.pagina {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 56px;
+}
+
+.intro {
+  margin-bottom: 24px;
+}
+
+.label {
+  margin: 0 0 8px;
+  color: var(--tekst-zacht);
+  font-size: 14px;
+}
+
+h1,
+h2 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 34px;
+}
+
+h2 {
+  font-size: 21px;
+}
+
+p {
+  color: var(--tekst-zacht);
+  line-height: 1.55;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.kpis article,
+.kaart {
+  background: var(--kaart);
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+}
+
+.kpis article {
+  padding: 16px;
+}
+
+.kpis span {
+  display: block;
+  color: var(--tekst-zacht);
+  font-size: 13px;
+}
+
+.kpis strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 24px;
+}
+
+.kaart {
+  margin-top: 18px;
+  padding: 20px;
+}
+
+.tabel-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--rand);
+}
+
+th {
+  color: var(--tekst-zacht);
+  font-size: 13px;
+}
+
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 8px;
+  border-radius: 999px;
+}
+
+.grafiek {
+  position: relative;
+  height: 300px;
+  margin-top: 14px;
+}
+
+.grafiek-groot {
+  height: 360px;
+}
+
+.legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: 12px;
+  color: var(--tekst-zacht);
+  font-size: 13px;
+}
+
+.legenda-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legenda-kleur {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.stationkaart {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.stationkaart svg {
+  width: 100%;
+  min-height: 300px;
+}
+
+.kaart-bg {
+  fill: var(--kaart-2);
+  stroke: var(--rand);
+}
+
+.waterlijn {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-dasharray: 8 7;
+  opacity: 0.5;
+}
+
+.stationkaart text {
+  fill: var(--tekst);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  .topbar {
+    padding: 12px 16px;
+  }
+
+  .pagina {
+    width: min(100% - 20px, 1180px);
+    padding-top: 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .grafiek,
+  .grafiek-groot {
+    height: 280px;
+  }
+}
