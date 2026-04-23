@@ -1,8 +1,7 @@
-# Waterstand Zuid-Holland – Django dashboard
+# Waterstand Zuid-Holland ? Django dashboard
 
 ## Over dit onderdeel
-Deze map bevat een eenvoudige Django-app voor het interactief bekijken van de
-visualisaties uit het waterstand-notebook.
+Deze map bevat een eenvoudige Django-app voor het bekijken van de visualisaties uit het waterstand-notebook. De notebook blijft het belangrijkste onderdeel van het project; de app is vooral bedoeld als extra presentatievorm.
 
 ## Inhoud
 - Overzicht van acht meetstations
@@ -13,11 +12,10 @@ visualisaties uit het waterstand-notebook.
 - Gemiddeld uurprofiel van Hoek van Holland
 - Vereenvoudigde kaart met meetstations
 
-## Technologieën
-- Django – Webapplicatie
-- Pandas – Kleine aggregaties voor het dashboard
-- Chart.js – Interactieve grafieken
+## Technologie?n
+- Django ? eenvoudige webapplicatie
+- Pandas ? kleine aggregaties voor het dashboard
+- Chart.js ? interactieve grafieken
 
 ## Status
-Eenvoudige dashboarddemo. De app gebruikt de lokaal aangemaakte Parquet-data uit
-de hoofdmap `data/`.
+Eenvoudige dashboarddemo. De app gebruikt de lokaal aangemaakte Parquet-data uit de hoofdmap `data/`.
